@@ -7,10 +7,12 @@
 //Un pointeur de sur un objet
 typedef void* p_object;
 
-//Structure my_vector
+//Structure my_vector 
+//    1) Nomber d'élément 
+//    2) Tableau d'objets de type void*
 struct struct_my_vector {
     size_t nbr_elements;
-    p_object objects_tab;
+    p_object *objects_tab;
 };
 
 //Redéfinir to s_my_vector
@@ -27,7 +29,13 @@ p_s_my_vector       alloc_my_vector(p_s_test_bench ptestbench);
 void                free_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector);
 void                set_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet);
 p_object            get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i);
-
+void                insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet);
+void                erase_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i);
+void                push_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, p_object pobjet);
+p_object            pop_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector);
+void                clear_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector);
+int                 empty_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector);
+size_t              size_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector);
 
 
 #endif
