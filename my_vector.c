@@ -5,7 +5,7 @@
  * 
  * 
  * Alloue et retourne la structure. 
- * Par défaut, le tableau dynamique est vide alors le pointeur de p_objet est initialisé à NULL
+ * Par défaut, le tableau dynamique est vide et le pointeur de p_objet est initialisé à NULL
  * 
  * *********************************************/
 p_s_my_vector alloc_my_vector(p_s_test_bench ptestbench)
@@ -83,6 +83,7 @@ p_object get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_
  * *********************************************/
 void insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
 {
+    printf("Pass insert_my_vector i = %ld\n", i);
     if(pmyvector == NULL)
         return;
 
@@ -158,6 +159,7 @@ void erase_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t 
  * *********************************************/
 void push_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, p_object pobjet)
 {
+    printf("Pass push_back_my_vector\n");
     insert_my_vector(ptestbench, pmyvector, pmyvector->nbr_elements-1, pobjet);
 }
 
