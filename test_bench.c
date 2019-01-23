@@ -1,5 +1,16 @@
 #include "test_bench.h"
-    
+ 
+/**
+ *
+ * func : alloc_s_test_bench()
+ *
+ * args : 
+ *
+ * desc : Allouer et retourner une pointeur sur la structure allouée.
+ * 
+ * return : ptr_test_bench (Pointeur sur la structure allouée)
+ *        
+**/    
 p_s_test_bench alloc_s_test_bench() 
 {
     p_s_test_bench ptr_test_bench = NULL;
@@ -13,12 +24,36 @@ p_s_test_bench alloc_s_test_bench()
 }
 
 
+/**
+ *
+ * func : free_s_test_bench(p_s_test_bench p)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *
+ * desc : Libérer la structrue pointée par p.
+ * 
+ * return : void
+ *        
+**/    
 void free_s_test_bench(p_s_test_bench p)
 {
-    free(p);
+    if(p)
+        free(p);
 }
 
 
+/**
+ *
+ * func : start_test_bench(p_s_test_bench p)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *
+ * desc : Initialiser à zéro tous les compteurs de la structure,
+ *        et initialise la variable de debut pour la mesure de temps d'exécution.
+ * 
+ * return : void
+ *        
+**/    
 void start_test_bench(p_s_test_bench p) 
 {
     if(p)
@@ -32,6 +67,17 @@ void start_test_bench(p_s_test_bench p)
 }
 
 
+/**
+ *
+ * func : stop_test_bench(p_s_test_bench p)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *
+ * desc : Initialise le variable de debut pour la mesure de temps d'exécution.
+ * 
+ * return : void
+ *        
+**/    
 void stop_test_bench(p_s_test_bench p) 
 {
     if(p)
@@ -41,6 +87,18 @@ void stop_test_bench(p_s_test_bench p)
 }
 
 
+/**
+ *
+ * func : increm_instruction_counter(p_s_test_bench p, int n)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *        n : int - (nombre d'instuction)
+ *
+ * desc : Incrémenter le compteur d'instuction de n instuctions.
+ * 
+ * return : void
+ *        
+**/    
 void increm_instruction_counter(p_s_test_bench p, int n)
 {
     if(p) 
@@ -49,7 +107,22 @@ void increm_instruction_counter(p_s_test_bench p, int n)
     }
 }
 
-void* my_malloc(p_s_test_bench p, size_t size) 
+
+/**
+ *
+ * func : my_malloc(p_s_test_bench p, size_t size)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *        size : size_t - (nombre d'instuction)
+ *
+ * desc : Allouer une zone de méemoire de taille size, 
+ *        Incrémenter le compteur d’allocation de 1,
+ *        Incrémenter le compteur de mémoire allouée de size et retourner la mémoire allouée.
+ * 
+ * return : ptr : void* (la mémoire allouée)
+ *        
+**/    
+void* my_malloc(p_s_test_bench p, size_t size)
 {
     //p_s_test_bench ptr_test_bench = (p_s_test_bench) malloc(sizeof(size));
 
@@ -66,6 +139,19 @@ void* my_malloc(p_s_test_bench p, size_t size)
 }
 
 
+/**
+ *
+ * func : my_free(p_s_test_bench p, void* ptr)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *        ptr : void* - (Pointeur sur la zone mémoire)
+ *
+ * desc : libérer la zone mémoire pointée par ptr,
+ *        Incrémenter le compteur de libération de 1.
+ * 
+ * return : void
+ *        
+**/    
 void my_free(p_s_test_bench p, void* ptr) 
 {
     free(ptr);
@@ -73,6 +159,17 @@ void my_free(p_s_test_bench p, void* ptr)
 }
 
 
+/**
+ *
+ * func : print_test_bench(p_s_test_bench p)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *
+ * desc : Afficher un rapport de toutes les mesures
+ * 
+ * return : void
+ *        
+**/    
 void print_test_bench(p_s_test_bench p) 
 {
     printf("\n********************************\n");
