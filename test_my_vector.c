@@ -13,15 +13,9 @@ int main(int argc, char const *argv[])
     p_s_my_vector pmyvector = alloc_my_vector(ptestbench);
 
 
-    
-
     for(size_t i = 0; i < 1000; i++)
         push_back_my_vector(ptestbench, pmyvector, &(tab[i]));
-
-
-        
     
-
     /*
     for(size_t i = 0; i < 1000; i++)
     {
