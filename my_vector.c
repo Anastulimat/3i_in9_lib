@@ -1,13 +1,17 @@
 #include "my_vector.h"
 
-
 /**
+ *
+ * func : alloc_my_vector(p_s_test_bench ptestbench)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *
+ * desc : Alloue et retourne la structure.
+ *        Par défaut, le tableau dynamique est vide et le pointeur de p_objet est initialisé à NULL.
  * 
- * 
- * Alloue et retourne la structure. 
- * Par défaut, le tableau dynamique est vide et le pointeur de p_objet est initialisé à NULL
- * 
- * *********************************************/
+ * return : ptr_my_vector : p_s_my_vector (Pointeur sur la structure allouée)
+ *        
+**/    
 p_s_my_vector alloc_my_vector(p_s_test_bench ptestbench)
 {
     p_s_my_vector ptr_my_vector = (p_s_my_vector) my_malloc(ptestbench, sizeof(s_my_vector));
@@ -15,7 +19,7 @@ p_s_my_vector alloc_my_vector(p_s_test_bench ptestbench)
     ptr_my_vector->nbr_elements = 0;
     ptr_my_vector->objects_tab = NULL;
 
-    //Affectaion de 1)malloc  -  2)nbr_elements  -  3)ptr_object
+    //Affectaion de 1) malloc  -  2) nbr_elements  -  3) ptr_object
     increm_instruction_counter(ptestbench, 3);
     return ptr_my_vector;
 }
@@ -23,11 +27,17 @@ p_s_my_vector alloc_my_vector(p_s_test_bench ptestbench)
 
 
 /**
+ *
+ * func : free_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *
+ * desc : Libérer la structure
  * 
- * 
- * Libérer la structure
- * 
- * *********************************************/
+ * return : void
+ *        
+**/    
 void free_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 {   
     if(pmyvector)
@@ -40,11 +50,19 @@ void free_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 
 
 /**
+ *
+ * func : set_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau)
+ *        pobjet : p_object - (pointuer sur un objet)
+ *
+ * desc : Affecter la donnée pobjet à l’index i du tableau objects_tab
  * 
- * 
- * Affecter la donnée pobjet à l’index i du tableau objects_tab
- * 
- * *********************************************/
+ * return : void
+ *        
+**/    
 void set_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
 {
     if(pmyvector == NULL)
@@ -52,17 +70,28 @@ void set_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i,
 
     if(i > pmyvector->nbr_elements)
         return;
-    
+
     pmyvector->objects_tab[i] = pobjet;
+
+    //Affectaion de 1) 1ère condition  -  2) 2ème condition  -  3) affectation
+    increm_instruction_counter(ptestbench, 3);
 }
 
 
+
 /**
+ *
+ * func : get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau)
+ *
+ * desc : Retourne l'éléménet à l’index i du tableau objects_tab
  * 
- * 
- * Retourne l'éléménet à l’index i du tableau objects_tab
- * 
- * *********************************************/
+ * return : p_object - (pointuer sur un objet)
+ *        
+**/    
 p_object get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i)
 {   
     if(pmyvector == NULL)
@@ -71,19 +100,30 @@ p_object get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_
     if(i > pmyvector->nbr_elements)
         return NULL;
 
+    //Affectaion de 1) 1ère condition  -  2) 2ème condition
+    increm_instruction_counter(ptestbench, 2);
+
     return pmyvector->objects_tab[i];
 }
 
 
+
 /**
+ *
+ * func : insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau pour l'insersion)
+ *        pobjet : p_object - (pointuer sur un objet)
+ *
+ * desc : Insert une nouvelle donnée à l’index i du tableau dynamique
  * 
- * 
- * Insert une nouvelle donnée à l’index i du tableau dynamique
- * 
- * *********************************************/
+ * return : void
+ *        
+**/    
 void insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
 {
-    printf("Pass insert_my_vector i = %ld\n", i);
     if(pmyvector == NULL)
         return;
 
@@ -102,6 +142,7 @@ void insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t
         for(long k = 0; k < i; k++)
         {
             datas_tmp[k] = pmyvector->objects_tab[k];
+            increm_instruction_counter(ptestbench, 3);
         }
 
         datas_tmp[i] = pobjet;
@@ -109,20 +150,36 @@ void insert_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t
         for(long k = i+1; k < pmyvector->nbr_elements; k++)
         {
             datas_tmp[k] = pmyvector->objects_tab[k];
+            increm_instruction_counter(ptestbench, 3);
         }
 
         my_free(ptestbench, pmyvector->objects_tab);
         pmyvector->objects_tab = datas_tmp;
         pmyvector->nbr_elements++;
+        increm_instruction_counter(ptestbench, 15);
     }
+
 }
 
 /**
  * 
  * 
- * Supprime la donnée à l’index i du tableau dynamique
+ * 
  * 
  * *********************************************/
+/**
+ *
+ * func : erase_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau pour l'insersion)
+ *
+ * desc : Supprime la donnée à l’index i du tableau dynamique
+ * 
+ * return : void
+ *        
+**/    
 void erase_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i)
 {
     if(pmyvector == NULL)
@@ -140,37 +197,56 @@ void erase_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t 
        for(long k = 0; k < i; k++)
        {
            data_tmp[k] = pmyvector->objects_tab[k];
+           increm_instruction_counter(ptestbench, 3);
        }
        for(long k = i + 1; k < pmyvector->nbr_elements; k++)
        {
            data_tmp[k-1] = pmyvector->objects_tab[k];
+           increm_instruction_counter(ptestbench, 3);
        }
        my_free(ptestbench, pmyvector->objects_tab);
        pmyvector->objects_tab = data_tmp;
        pmyvector->nbr_elements--;
+       increm_instruction_counter(ptestbench, 11);
    }
 }
 
+
+
 /**
+ *
+ * func : push_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, p_object pobjet)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau pour l'insersion)
+ *
+ * desc : Insert une nouvelle donnée à la fin du tableau dynamique.
  * 
- * 
- * Insert une nouvelle donnée à la fin du tableau dynamique
- * 
- * *********************************************/
+ * return : void
+ *        
+**/    
 void push_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, p_object pobjet)
 {
-    printf("Pass push_back_my_vector\n");
     insert_my_vector(ptestbench, pmyvector, pmyvector->nbr_elements, pobjet);
     //insert_my_vector(ptestbench, pmyvector, pmyvector->nbr_elements-1, pobjet);
 }
 
 
+
 /**
+ *
+ * func : pop_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *
+ *
+ * desc : Supprime la dernière donnée de votre tableau dynamique et la retournée.
  * 
- * 
- * Supprime la dernière donnée de votre tableau dynamique
- * 
- * *********************************************/
+ * return : pobjet : p_object - retourner le dernier élément du tableau
+ *        
+**/    
 p_object pop_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 {
     if(pmyvector == NULL)
@@ -182,18 +258,26 @@ p_object pop_back_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
     p_object pobject = NULL;
     pobject = pmyvector->objects_tab[pmyvector->nbr_elements-1];
 
+    increm_instruction_counter(ptestbench, 5);
     erase_my_vector(ptestbench, pmyvector, pmyvector->nbr_elements-1);
 
     return pobject;
 }
 
 
+
 /**
+ *
+ * func : clear_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *
+ * desc : Supprime toutes les données de votre tableau dynamique.
  * 
- * 
- * Supprime toutes les données de votre tableau dynamique.
- * 
- * *********************************************/
+ * return : void
+ *        
+**/    
 void clear_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 {
     if(pmyvector == NULL)
@@ -206,37 +290,57 @@ void clear_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
     {
         pmyvector->objects_tab[i] = NULL;
         my_free(ptestbench, pmyvector->objects_tab[i]);
+        increm_instruction_counter(ptestbench, 3);
     }
     my_free(ptestbench, pmyvector->objects_tab);
     pmyvector->nbr_elements = 0;
+    increm_instruction_counter(ptestbench, 6);
 }
 
 
+
 /**
+ *
+ * func : empty_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *
+ * desc : Retourne un entier non-nul si le tableau dynamique est vide et zéros sinon.
  * 
- * 
- * Retourne un entier non-nul si le tableau dynamique est vide et zéros sinon.
- * 
- * *********************************************/
+ * return : int
+ *        
+**/    
 int empty_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 {
     if(pmyvector == NULL || pmyvector->objects_tab == NULL || pmyvector->nbr_elements == 0)
         return 1;
 
+    increm_instruction_counter(ptestbench, 3);
+
     return 0;
 }
 
 
+
 /**
+ *
+ * func : size_t size_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *
+ * desc : Retourne le nombre d’élément stocker dans le tableau dynamique
  * 
- * 
- * Retourne le nombre d’élément stocker dans le tableau dynamique
- * 
- * *********************************************/
+ * return : size_t - Le nombre d'éléments dans le tableau
+ *        
+**/    
 size_t size_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector)
 {
     if(pmyvector == NULL || pmyvector->objects_tab == NULL || pmyvector->nbr_elements == 0)
         return 0;
+
+    increm_instruction_counter(ptestbench, 3);
 
     return pmyvector->nbr_elements;
 }

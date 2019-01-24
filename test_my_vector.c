@@ -13,20 +13,15 @@ int main(int argc, char const *argv[])
     p_s_my_vector pmyvector = alloc_my_vector(ptestbench);
 
 
-    for(size_t i = 0; i < 1000; i++)
-        push_back_my_vector(ptestbench, pmyvector, &(tab[i]));
-    
-    /*
-    for(size_t i = 0; i < 1000; i++)
-    {
-        printf("tab[%ld] = %d\n", i, tab[i]);
+    for(size_t i = 0; i < 1000; i++) {
+        push_back_my_vector(ptestbench, pmyvector, &tab[i]);
     }
-    exit(0);
-    */
-
+        
+    //Affectaion de valeurs
     for(size_t i = 0; i < 1000; i++)
         *(int*)get_my_vector(ptestbench, pmyvector, i) = i;
 
+    //Supression de données
     while(!empty_my_vector(ptestbench, pmyvector))
         pop_back_my_vector(ptestbench, pmyvector);
 

@@ -4,12 +4,12 @@
 #include "test_bench.h"
 
 
-//Un pointeur de sur un objet
+//Un pointeur de sur un objet (abstrait)
 typedef void* p_object;
 
 //Structure my_vector 
 //    1) Nomber d'élément 
-//    2) Tableau d'objets de type void*
+//    2) Tableau d'objets de type void* (p_objet)
 struct struct_my_vector {
     size_t nbr_elements;
     p_object *objects_tab;

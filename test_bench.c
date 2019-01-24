@@ -135,6 +135,7 @@ void* my_malloc(p_s_test_bench p, size_t size)
     }
     p->compteurAllocation++;
     p->compteurTotalAllocationSize += size;
+    increm_instruction_counter(p, 1);
     return ptr;
 }
 
