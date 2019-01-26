@@ -132,10 +132,44 @@ void* my_malloc(p_s_test_bench p, size_t size)
     {
         printf("ptr ---> malloc error !");
         exit(0);
+        increm_instruction_counter(p, 2);
     }
     p->compteurAllocation++;
     p->compteurTotalAllocationSize += size;
-    increm_instruction_counter(p, 1);
+    increm_instruction_counter(p, 4);
+    return ptr;
+}
+
+
+
+/**
+ *
+ * func : my_realloc(p_s_test_bench p, void* ptr_vector, size_t size)
+ *
+ * args : p : p_s_test_bench - (Pointeur sur la structure)
+ *        ptr_vector : void* - (Pointeur sur le vector à réallouer)
+ *        size : size_t - (nombre d'instuction)
+ *
+ * desc : Réallouer une zone de méemoire de taille size, 
+ *        Incrémenter le compteur d’allocation de 1,
+ *        Incrémenter le compteur de mémoire allouée de size et retourner la mémoire allouée.
+ * 
+ * return : ptr : void* (la mémoire allouée)
+ *        
+**/   
+void* my_realloc(p_s_test_bench p, void* ptr_vector, size_t size)
+{
+    void* ptr = realloc(ptr_vector, size);
+
+    if(!ptr) 
+    {
+        printf("ptr ---> realloc error !");
+        exit(0);
+        increm_instruction_counter(p, 2);
+    }
+    p->compteurAllocation++;
+    p->compteurTotalAllocationSize += size;
+    increm_instruction_counter(p, 4);
     return ptr;
 }
 
@@ -166,7 +200,7 @@ void my_free(p_s_test_bench p, void* ptr)
  *
  * args : p : p_s_test_bench - (Pointeur sur la structure)
  *
- * desc : Afficher un rapport de toutes les mesures
+ * desc : Afficher un rapport de toutes les mesures.
  * 
  * return : void
  *        

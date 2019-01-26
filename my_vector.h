@@ -8,10 +8,12 @@
 typedef void* p_object;
 
 //Structure my_vector 
-//    1) Nomber d'élément 
+//    1) Nomber d'éléments <<référencés>> dans la structure
+//	  3) Npmbre d'éléments <<référeçable>> dans la structure (taille réelle du tableau)	
 //    2) Tableau d'objets de type void* (p_objet)
 struct struct_my_vector {
     size_t nbr_elements;
+    size_t capacity;
     p_object *objects_tab;
 };
 

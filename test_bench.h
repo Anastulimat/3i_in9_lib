@@ -41,6 +41,7 @@ void            start_test_bench(p_s_test_bench p);
 void            stop_test_bench(p_s_test_bench p);
 void            increm_instruction_counter(p_s_test_bench p, int n);
 void*           my_malloc(p_s_test_bench p, size_t size);
+void*           my_realloc(p_s_test_bench p, void* ptr_vector, size_t size);
 void            my_free(p_s_test_bench p, void* ptr);
 void            print_test_bench(p_s_test_bench p);
 
