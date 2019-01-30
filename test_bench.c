@@ -150,7 +150,7 @@ void* my_malloc(p_s_test_bench p, size_t size)
  *        ptr_vector : void* - (Pointeur sur le vector à réallouer)
  *        size : size_t - (nombre d'instuction)
  *
- * desc : Réallouer une zone de méemoire de taille size, 
+ * desc : Réallouer une zone de méemoire de taille size, d'abord on free puis on alloue
  *        Incrémenter le compteur d’allocation de 1,
  *        Incrémenter le compteur de mémoire allouée de size et retourner la mémoire allouée.
  * 
@@ -167,6 +167,7 @@ void* my_realloc(p_s_test_bench p, void* ptr_vector, size_t size)
         exit(0);
         increm_instruction_counter(p, 2);
     }
+    p->compteurFree++;
     p->compteurAllocation++;
     p->compteurTotalAllocationSize += size;
     increm_instruction_counter(p, 4);

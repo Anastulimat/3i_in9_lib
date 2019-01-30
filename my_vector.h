@@ -2,6 +2,7 @@
 #define __MY__VECTOR__
 
 #include "test_bench.h"
+#include "ptr_func_set.h"
 
 
 //Un pointeur de sur un objet (abstrait)
@@ -9,11 +10,13 @@ typedef void* p_object;
 
 //Structure my_vector 
 //    1) Nomber d'éléments <<référencés>> dans la structure
-//	  3) Npmbre d'éléments <<référeçable>> dans la structure (taille réelle du tableau)	
+//	  3) Nombre d'éléments <<référeçable>> dans la structure (taille réelle du tableau)	
+//	  4) Pointeur sur la structure s_ptr_func_set
 //    2) Tableau d'objets de type void* (p_objet)
 struct struct_my_vector {
     size_t nbr_elements;
     size_t capacity;
+    s_ptr_func_set* ptr_func_set;
     p_object *objects_tab;
 };
 

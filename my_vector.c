@@ -18,6 +18,7 @@ p_s_my_vector alloc_my_vector(p_s_test_bench ptestbench)
     
     ptr_my_vector->nbr_elements = 0;
     ptr_my_vector->capacity = 16;
+    ptr_my_vector->ptr_func_set = my_malloc(ptestbench, sizeof(s_ptr_func_set));
     ptr_my_vector->objects_tab = NULL;
 
     //Affectaion de 1) malloc  -  2) nbr_elements  - 3) capacity  - 4) ptr_object
@@ -290,7 +291,6 @@ void erase_my_vector_dynamically(p_s_test_bench ptestbench, p_s_my_vector pmyvec
         pmyvector->objects_tab[k+i] = pmyvector->objects_tab[k+i+1];
         increm_instruction_counter(ptestbench, 3);
     }
-
     pmyvector->nbr_elements--;
 
     if(pmyvector->nbr_elements <= (pmyvector->capacity/4))
