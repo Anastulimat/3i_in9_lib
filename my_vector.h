@@ -16,8 +16,8 @@ typedef void* p_object;
 struct struct_my_vector {
     size_t nbr_elements;
     size_t capacity;
-    s_ptr_func_set* ptr_func_set;
-    p_object *objects_tab;
+    p_s_ptr_func_set ptr_func_set;
+    p_object* objects_tab;
 };
 
 //Redéfinir to s_my_vector

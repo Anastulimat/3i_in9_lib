@@ -73,6 +73,11 @@ void set_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i,
     if(i > pmyvector->nbr_elements)
         return;
 
+
+    pobjet = pmyvector->ptr_func_set->alloc(ptestbench);
+    pmyvector->ptr_func_set->copy(ptestbench, pmyvector->objects_tab[i], pobjet);
+    
+
     pmyvector->objects_tab[i] = pobjet;
 
     //Affectaion de 1) 1ère condition  -  2) 2ème condition  -  3) affectation
@@ -106,6 +111,33 @@ p_object get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_
     increm_instruction_counter(ptestbench, 2);
 
     return pmyvector->objects_tab[i];
+}
+
+
+
+/**
+ *
+ * func : get_my_vector(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
+ *
+ * args : ptestbench : p_s_test_bench - (Pointeur sur test_bench)
+ *        pmyvector : p_s_my_vector - (Pointeur sur un vector)
+ *        i : size_t - (index du tableau)
+ *        pobjet : p_object
+ *
+ * desc : Retourne l'éléménet à l’index i du tableau objects_tab
+ * 
+ * return : void
+ *        
+**/    
+void get_my_vector_argment_return(p_s_test_bench ptestbench, p_s_my_vector pmyvector, size_t i, p_object pobjet)
+{   
+    
+    //Affectaion de 1) 1ère condition  -  2) 2ème condition
+    increm_instruction_counter(ptestbench, 1);
+
+    pobjet = pmyvector->objects_tab[i];
+
+    return;
 }
 
 

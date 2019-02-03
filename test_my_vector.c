@@ -27,8 +27,6 @@ int main(int argc, char const *argv[])
         pop_back_my_vector(ptestbench, pmyvector);
 
     printf("\n");
-    printf("pmyvector->nbr_elemnts = %zu\n", pmyvector->nbr_elements);
-    printf("pmyvector->capacity = %zu\n", pmyvector->capacity);
 
     free_my_vector(ptestbench, pmyvector);
     my_free(ptestbench, tab);
